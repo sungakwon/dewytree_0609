@@ -5,15 +5,72 @@ function goToHome() {
     window.location.href = 'index2.html';
 }
 
-function checkout() {
-    const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-    if (cartItems.length === 0) {
-        alert('장바구니가 비어있습니다.');
-        return;
+// 장바구니에 상품 제거
+function removeItem(index) {
+    try {
+        const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+        cartItems.splice(index, 1);
+        localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+        loadCartItems();
+    } catch (error) {
+        console.error('상품 제거 중 오류 발생:', error);
+        alert('상품 제거 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
-    const orderData = encodeURIComponent(JSON.stringify(cartItems));
-    window.location.href = `order.html?orderData=${orderData}`;
 }
+
+// 수량 업데이트
+function updateQuantity(index, change) {
+    try {
+        const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+        if (cartItems[index]) {
+            cartItems[index].quantity = Math.max(1, cartItems[index].quantity + change);
+            localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+            loadCartItems();
+        }
+    } catch (error) {
+        console.error('수량 업데이트 중 오류 발생:', error);
+        alert('수량 업데이트 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+}
+
+// 수량 직접 입력
+function updateQuantityInput(index, value) {
+    try {
+        const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+        if (cartItems[index]) {
+            cartItems[index].quantity = Math.max(1, parseInt(value) || 1);
+            localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+            loadCartItems();
+        }
+    } catch (error) {
+        console.error('수량 입력 중 오류 발생:', error);
+        alert('수량 입력 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+}
+
+// 결제 페이지로 이동
+function checkout() {
+    try {
+        const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+        if (cartItems.length === 0) {
+            alert('장바구니가 비어있습니다.');
+            return;
+        }
+        
+        const orderData = encodeURIComponent(JSON.stringify(cartItems));
+        window.location.href = `order.html?orderData=${orderData}`;
+    } catch (error) {
+        console.error('결제 처리 중 오류 발생:', error);
+        alert('결제 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+}
+
+// 페이지 로드 이벤트 리스너 추가
+window.addEventListener('DOMContentLoaded', () => {
+    loadCartItems();
+});
+
+
 
 // 장바구니 아이템 로드
 function loadCartItems() {
@@ -106,38 +163,7 @@ function createCartItemElement(item, index) {
     return div;
 }
 
-// 수량 업데이트
-function updateQuantity(index, change) {
-    try {
-        const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-        if (cartItems[index]) {
-            cartItems[index].quantity = Math.max(1, cartItems[index].quantity + change);
-            localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
-            loadCartItems();
-        }
-    } catch (error) {
-        console.error('수량 업데이트 중 오류 발생:', error);
-        alert('수량 업데이트 중 오류가 발생했습니다. 다시 시도해주세요.');
-    }
-}
 
-// 수량 직접 입력
-function updateQuantityInput(index, value) {
-    const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-    if (cartItems[index]) {
-        cartItems[index].quantity = Math.max(1, parseInt(value) || 1);
-        localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
-        loadCartItems();
-    }
-}
-
-// 아이템 제거
-function removeItem(index) {
-    const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-    cartItems.splice(index, 1);
-    localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
-    loadCartItems();
-}
 
 // 장바구니 요약 정보 업데이트
 function updateCartSummary(subtotal) {
@@ -149,5 +175,4 @@ function updateCartSummary(subtotal) {
     document.getElementById('total').textContent = total.toLocaleString() + '원';
 }
 
-// 페이지 로드 시 장바구니 아이템 로드
-document.addEventListener('DOMContentLoaded', loadCartItems); 
+ 
