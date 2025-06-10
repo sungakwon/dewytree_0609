@@ -23,7 +23,12 @@ function updateQuantity(index, change) {
     try {
         const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
         if (cartItems[index]) {
-            cartItems[index].quantity = cartItems[index].quantity + change;
+            // 수량이 1 미만일 때는 1로 설정
+            if (cartItems[index].quantity < 1) {
+                cartItems[index].quantity = 1;
+            }
+            // 수량 변경
+            cartItems[index].quantity += change;
             // 최소 수량 1 보장
             if (cartItems[index].quantity < 1) {
                 cartItems[index].quantity = 1;

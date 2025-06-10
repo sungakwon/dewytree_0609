@@ -9,9 +9,12 @@ function goToHome() {
 function removeItem(index) {
     try {
         const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-        cartItems.splice(index, 1);
-        localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
-        renderCartItems();
+        // 인덱스 범위 검증
+        if (index >= 0 && index < cartItems.length) {
+            cartItems.splice(index, 1);
+            localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+            renderCartItems();
+        }
     } catch (error) {
         console.error('상품 제거 중 오류 발생:', error);
         alert('상품 제거 중 오류가 발생했습니다. 다시 시도해주세요.');
@@ -23,7 +26,12 @@ function updateQuantity(index, change) {
     try {
         const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
         if (cartItems[index]) {
-            cartItems[index].quantity = cartItems[index].quantity + change;
+            // 수량이 1 미만일 때는 1로 설정
+            if (cartItems[index].quantity < 1) {
+                cartItems[index].quantity = 1;
+            }
+            // 수량 변경
+            cartItems[index].quantity += change;
             // 최소 수량 1 보장
             if (cartItems[index].quantity < 1) {
                 cartItems[index].quantity = 1;
