@@ -178,9 +178,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 수량 입력 필드 이벤트 리스너
-    if (quantityInput) {
-        quantityInput.addEventListener('change', handleQuantityInput);
-    }
+    // 수량 입력 필드 이벤트 리스너
+if (quantityInput) {
+    // 초기 수량 설정
+    quantityInput.value = '1';
+    quantityInput.addEventListener('change', handleQuantityInput);
+}
 
     // 수량 감소 버튼 이벤트 리스너
     if (decreaseButton) {
@@ -364,25 +367,26 @@ document.addEventListener('DOMContentLoaded', function() {
             const quantity = parseInt(quantityInput.value);
             
             // 장바구니에 아이템 추가
-            const cartKey = getCurrentCartKey();
-            let cartItems = JSON.parse(localStorage.getItem(cartKey)) || [];
-            
-            // 이미 있는 아이템인지 확인
-            const existingItemIndex = cartItems.findIndex(item => item.id === productDetail.id);
-            
-            if (existingItemIndex > -1) {
-                // 이미 있는 아이템이면 수량만 업데이트
-                cartItems[existingItemIndex].quantity += quantity;
-            } else {
-                // 새로운 아이템이면 추가
-                cartItems.push({
-                    id: productDetail.id,
-                    name: productDetail.name,
-                    price: productDetail.price,
-                    quantity: quantity,
-                    image: productDetail.image
-                });
-            }
+const cartKey = getCurrentCartKey();
+let cartItems = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+// 이미 있는 아이템인지 확인
+const existingItemIndex = cartItems.findIndex(item => item.id === productDetail.id);
+
+if (existingItemIndex > -1) {
+    // 이미 있는 아이템이면 수량만 업데이트
+    cartItems[existingItemIndex].quantity = 1;  // 수량을 항상 1로 설정
+} else {
+    // 새로운 아이템이면 추가
+    cartItems.push({
+        id: productDetail.id,
+        name: productDetail.name,
+        price: productDetail.price,
+        quantity: 1,  // 수량을 항상 1로 설정
+        image: productDetail.image
+    });
+}
+           
             
             // 장바구니 업데이트
             localStorage.setItem(cartKey, JSON.stringify(cartItems));
