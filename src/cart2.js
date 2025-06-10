@@ -124,6 +124,10 @@ function loadCartItems() {
 
     let subtotal = 0;
     cartItems.forEach((item, index) => {
+        // 초기 수량이 1로 설정되도록
+        if (typeof item.quantity !== 'number' || item.quantity < 1) {
+            item.quantity = 1;
+        }
         const itemElement = createCartItemElement(item, index);
         cartItemsContainer.appendChild(itemElement);
         subtotal += item.price * item.quantity;
