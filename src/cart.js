@@ -123,48 +123,41 @@ function renderCartItems() {
     const quantityInputs = document.querySelectorAll('.quantity-input');
     const removeBtns = document.querySelectorAll('.cart-item-remove');
 
-    // 이벤트 리스너가 이미 추가되어 있는지 확인
-    const hasEventListeners = (element, eventName) => {
-        const eventListeners = getEventListeners(element)[eventName];
-        return eventListeners && eventListeners.length > 0;
-    };
+    // 이벤트 리스너 제거
+    minusBtns.forEach(btn => btn.removeEventListener('click', () => {}));
+    plusBtns.forEach(btn => btn.removeEventListener('click', () => {}));
+    quantityInputs.forEach(input => input.removeEventListener('change', () => {}));
+    removeBtns.forEach(btn => btn.removeEventListener('click', () => {}));
 
+    // 새로운 이벤트 리스너 추가
     minusBtns.forEach(btn => {
-        if (!hasEventListeners(btn, 'click')) {
-            btn.addEventListener('click', () => {
-                const index = parseInt(btn.dataset.index);
-                updateQuantity(index, -1);
-            });
-        }
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            updateQuantity(index, -1);
+        });
     });
 
     plusBtns.forEach(btn => {
-        if (!hasEventListeners(btn, 'click')) {
-            btn.addEventListener('click', () => {
-                const index = parseInt(btn.dataset.index);
-                updateQuantity(index, 1);
-            });
-        }
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            updateQuantity(index, 1);
+        });
     });
 
     quantityInputs.forEach(input => {
-        if (!hasEventListeners(input, 'change')) {
-            input.addEventListener('change', (e) => {
-                const index = parseInt(e.target.closest('.quantity-controls').querySelector('.quantity-btn').dataset.index);
-                const value = Math.max(1, parseInt(e.target.value) || 1);
-                e.target.value = value;
-                updateQuantityInput(index, value);
-            });
-        }
+        input.addEventListener('change', (e) => {
+            const index = parseInt(e.target.closest('.quantity-controls').querySelector('.quantity-btn').dataset.index);
+            const value = Math.max(1, parseInt(e.target.value) || 1);
+            e.target.value = value;
+            updateQuantityInput(index, value);
+        });
     });
 
     removeBtns.forEach(btn => {
-        if (!hasEventListeners(btn, 'click')) {
-            btn.addEventListener('click', () => {
-                const index = parseInt(btn.dataset.index);
-                removeItem(index);
-            });
-        }
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            removeItem(index);
+        });
     });
 
     // 쇼핑 계속하기와 구매하기 버튼 이벤트 처리
@@ -172,7 +165,9 @@ function renderCartItems() {
     const checkoutBtn = document.querySelector('.checkout-btn');
 
     if (continueShoppingBtn) {
-        continueShoppingBtn.addEventListener('click', goToHome);
+        continueShoppingBtn.addEventListener('click', () => {
+            goToHome();
+        });
     }
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', () => {
