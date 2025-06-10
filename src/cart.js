@@ -141,7 +141,6 @@ function renderCartItems() {
         }
 
         if (removeBtn) {
-            removeBtn.removeEventListener('click', () => {});
             removeBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 removeItem(index);
@@ -163,11 +162,11 @@ function renderCartItems() {
     const quantityInputs = document.querySelectorAll('.quantity-input');
     const removeBtns = document.querySelectorAll('.cart-item-remove');
 
-    // 이벤트 리스너 제거
-    minusBtns.forEach(btn => btn.removeEventListener('click', () => {}));
-    plusBtns.forEach(btn => btn.removeEventListener('click', () => {}));
-    quantityInputs.forEach(input => input.removeEventListener('change', () => {}));
-    removeBtns.forEach(btn => btn.removeEventListener('click', () => {}));
+    // 기존 이벤트 리스너 제거
+    minusBtns.forEach(btn => btn.removeEventListener('click', updateQuantity));
+    plusBtns.forEach(btn => btn.removeEventListener('click', updateQuantity));
+    quantityInputs.forEach(input => input.removeEventListener('change', updateQuantityInput));
+    removeBtns.forEach(btn => btn.removeEventListener('click', removeItem));
 
     // 새로운 이벤트 리스너 추가
     minusBtns.forEach(btn => {
