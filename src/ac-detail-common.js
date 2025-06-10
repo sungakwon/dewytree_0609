@@ -149,11 +149,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const addToCartButton = document.querySelector('.add-to-cart-button');
     const buyNowButton = document.querySelector('.buy-now-button');
 
-    console.log('DOMContentLoaded event fired.');
-    console.log('quantityInput:', quantityInput);
-    console.log('totalPriceAmount:', totalPriceAmount);
-    console.log('addToCartButton:', addToCartButton);
-    console.log('buyNowButton:', buyNowButton);
+    // 수량 변경 버튼 이벤트 리스너
+    const decreaseButton = document.querySelector('.quantity-controls button:first-child');
+    const increaseButton = document.querySelector('.quantity-controls button:last-child');
+
+    // 수량 입력 필드 이벤트 리스너
+    if (quantityInput) {
+        quantityInput.addEventListener('change', handleQuantityInput);
+    }
+
+    // 수량 감소 버튼 이벤트 리스너
+    if (decreaseButton) {
+        decreaseButton.addEventListener('click', decreaseQuantity);
+    }
+
+    // 수량 증가 버튼 이벤트 리스너
+    if (increaseButton) {
+        increaseButton.addEventListener('click', increaseQuantity);
+    }
 
     // 초기 총 가격 설정
     if (quantityInput && totalPriceAmount && productDetail) {
@@ -255,22 +268,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// 수량 변경 버튼 이벤트 리스너
-const decreaseButton = document.querySelector('.quantity-controls button:first-child');
-const increaseButton = document.querySelector('.quantity-controls button:last-child');
-
-if (decreaseButton) {
-    decreaseButton.addEventListener('click', decreaseQuantity);
-}
-
-if (increaseButton) {
-    increaseButton.addEventListener('click', increaseQuantity);
-}
-
-// 수량 입력 필드 이벤트 리스너
-if (quantityInput) {
-    quantityInput.addEventListener('change', handleQuantityInput);
-}
+// 전역 함수로 등록
+window.goToCart = goToCart;
+window.goToMainPage = goToMainPage;
+window.increaseQuantity = increaseQuantity;
+window.decreaseQuantity = decreaseQuantity;
+window.handleQuantityInput = handleQuantityInput;
+window.showPopup = showPopup;
+window.closePopup = closePopup;
+window.updateTotalPrice = updateTotalPrice;
 
 // 전역 함수로 등록
 window.goToCart = goToCart;
