@@ -101,7 +101,7 @@ function closePopup() {
 // 수량 변경 시 총 가격 업데이트
 function updateTotalPrice() {
     if (quantityInput && totalPriceAmount && productDetail) {
-        const quantity = 1;
+        const quantity = parseInt(quantityInput.value) || 1;
         const totalPrice = productDetail.price * quantity;
         totalPriceAmount.textContent = totalPrice.toLocaleString() + '원';
     }
@@ -201,44 +201,49 @@ if (quantityInput) {
     // 장바구니 담기 버튼 클릭 이벤트
     if (addToCartButton) {
         addToCartButton.addEventListener('click', function() {
-            const quantity = 1;  // 항상 수량을 1로 고정
-    
+            const quantity = parseInt(quantityInput.value);
+            
+            // 장바구니에 아이템 추가
             const cartKey = getCurrentCartKey();
             let cartItems = JSON.parse(localStorage.getItem(cartKey)) || [];
-    
+            
+            // 이미 있는 아이템인지 확인
             const existingItemIndex = cartItems.findIndex(item => item.id === productDetail.id);
-    
+            
             if (existingItemIndex > -1) {
-                // 이미 있는 아이템이면 수량만 1로 덮어쓰기 (또는 그대로 두기)
-                cartItems[existingItemIndex].quantity = 1;
+                // 이미 있는 아이템이면 수량만 업데이트
+                cartItems[existingItemIndex].quantity += quantity;
             } else {
+                // 새로운 아이템이면 추가
                 cartItems.push({
                     id: productDetail.id,
                     name: productDetail.name,
                     price: productDetail.price,
-                    quantity: 1,
+                    quantity: quantity,
                     image: productDetail.image
                 });
             }
-    
+            
+            // 장바구니 업데이트
             localStorage.setItem(cartKey, JSON.stringify(cartItems));
-    
+            
+            // GA4 이벤트 추적
             gtag('event', 'add_to_cart', {
                 currency: 'KRW',
-                value: productDetail.price * 1,
+                value: productDetail.price * quantity,
                 items: [{
                     item_id: productDetail.id,
                     item_name: productDetail.name,
                     price: productDetail.price,
-                    quantity: 1,
+                    quantity: quantity,
                     currency: 'KRW'
                 }]
             });
-    
+            
+            // 팝업 표시
             showPopup();
         });
     }
-    
 
     // 바로 구매하기 버튼 클릭 이벤트
     if (buyNowButton) {
