@@ -208,7 +208,7 @@ function createCartItemElement(item, index) {
         <div class="cart-item-quantity">
             <div class="quantity-controls">
                 <button data-index="${index}" class="quantity-btn minus">-</button>
-                <input type="number" value="1" min="1" class="quantity-input">
+                <input type="number" value="${item.quantity}" min="1" class="quantity-input">
                 <button data-index="${index}" class="quantity-btn plus">+</button>
             </div>
         </div>
