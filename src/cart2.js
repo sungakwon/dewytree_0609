@@ -210,6 +210,33 @@ function createCartItemElement(item, index) {
         </div>
         <span class="cart-item-remove" data-index="${index}">✕</span>
     `;
+
+    // 수량 버튼 이벤트 리스너 추가
+    const minusBtn = div.querySelector('.quantity-btn.minus');
+    const plusBtn = div.querySelector('.quantity-btn.plus');
+    const quantityInput = div.querySelector('.quantity-input');
+
+    if (minusBtn) {
+        minusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateQuantity(index, -1);
+        });
+    }
+
+    if (plusBtn) {
+        plusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateQuantity(index, 1);
+        });
+    }
+
+    if (quantityInput) {
+        quantityInput.addEventListener('change', (e) => {
+            e.stopPropagation();
+            updateQuantityInput(index, e.target.value);
+        });
+    }
+
     return div;
 }
 

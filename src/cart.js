@@ -108,6 +108,41 @@ function renderCartItems() {
             </div>
             <div class="cart-item-remove" data-index="${index}">✕</div>
         `;
+
+        // 수량 버튼 이벤트 리스너 추가
+        const minusBtn = itemElement.querySelector('.quantity-btn.minus');
+        const plusBtn = itemElement.querySelector('.quantity-btn.plus');
+        const quantityInput = itemElement.querySelector('.quantity-input');
+        const removeBtn = itemElement.querySelector('.cart-item-remove');
+
+        if (minusBtn) {
+            minusBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateQuantity(index, -1);
+            });
+        }
+
+        if (plusBtn) {
+            plusBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateQuantity(index, 1);
+            });
+        }
+
+        if (quantityInput) {
+            quantityInput.addEventListener('change', (e) => {
+                e.stopPropagation();
+                updateQuantityInput(index, e.target.value);
+            });
+        }
+
+        if (removeBtn) {
+            removeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                removeItem(index);
+            });
+        }
+
         cartItemsContainer.appendChild(itemElement);
     });
 
