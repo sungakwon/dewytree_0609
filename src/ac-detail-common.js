@@ -101,33 +101,42 @@ function closePopup() {
 // 수량 변경 시 총 가격 업데이트
 function updateTotalPrice() {
     if (quantityInput && totalPriceAmount && productDetail) {
-        const quantity = parseInt(quantityInput.value);
+        const quantity = parseInt(quantityInput.value) || 1;
         const totalPrice = productDetail.price * quantity;
         totalPriceAmount.textContent = totalPrice.toLocaleString() + '원';
     }
 }
 
 // 수량 증가/감소 버튼
-function increaseQuantity() {
+function increaseQuantity(e) {
+    e.stopPropagation();
     if (quantityInput) {
-        quantityInput.value = parseInt(quantityInput.value) + 1;
+        let value = parseInt(quantityInput.value) || 0;
+        value = Math.max(1, value + 1);
+        quantityInput.value = value;
         updateTotalPrice();
     }
 }
 
-function decreaseQuantity() {
-    if (quantityInput && parseInt(quantityInput.value) > 1) {
-        quantityInput.value = parseInt(quantityInput.value) - 1;
+function decreaseQuantity(e) {
+    e.stopPropagation();
+    if (quantityInput) {
+        let value = parseInt(quantityInput.value) || 1;
+        value = Math.max(1, value - 1);
+        quantityInput.value = value;
         updateTotalPrice();
     }
 }
 
 // 수량 직접 입력 시 총 가격 업데이트
-function handleQuantityInput() {
+function handleQuantityInput(e) {
+    e.stopPropagation();
     if (quantityInput) {
         let value = parseInt(quantityInput.value);
-        if (isNaN(value) || value < 1) {
+        if (isNaN(value)) {
             value = 1;
+        } else {
+            value = Math.max(1, value);
         }
         quantityInput.value = value;
         updateTotalPrice();
