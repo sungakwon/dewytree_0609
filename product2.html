@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics 태그 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFQZ1B9D87"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VFQZ1B9D87');
+
+        // GA4 이벤트 추적 함수
+        function trackGA4Event(eventName, eventParams) {
+            gtag('event', eventName, eventParams);
+        }
+    </script>
+    <title>DEWYTREE - ALL PRODUCTS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/src/product.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo" onclick="location.href='index2.html'" style="cursor: pointer;">DEWYTREE</div>
+            <nav class="nav-menu">
+                <a href="brand2.html">BRAND</a>
+                <div class="dropdown">
+                    <a href="product2.html">PRODUCT</a>
+                    <div class="dropdown-content">
+                        <div class="menu-column">
+                            <div class="menu-title">BY LINE</div>
+                            <ul class="submenu">
+                                <li><a href="amino-product.html#version-a" onclick="saveVersion('A'); return true;">AC라인</a></li>
+                                <li><a href="amino-product.html#version-b" onclick="saveVersion('B'); return true;">AMINO라인</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <a href="best2.html">BEST</a>
+            </nav>
+        </div>
+        <div class="cart-icon" onclick="location.href='cart2.html'">🛒</div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="page-title">ALL</h1>
+        <div class="products-grid">
+            <!-- AC Line Products -->
+            <a href="ac-mask-detail.html" style="text-decoration: none; color: inherit;" onclick="trackGA4Event('product_list_click', {product_id: 'AC-MASK-001', product_name: 'AC 딥 훼이셜 진정 마스크 10매', price: 14900});">
+                <div class="product-card" data-product-id="AC-MASK-001" data-product-name="AC 딥 훼이셜 진정 마스크 10매" data-price="14900">
+                    <div class="sale-badge">SALE</div>
+                    <div class="product-image">
+                        <img src="/images/ac-mask-pack.jpg" alt="AC 딥 훼이셜 진정 마스크">
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name">AC 딥 훼이셜 진정 마스크 10매</h2>
+                        <div class="original-price">30,000원</div>
+                        <div class="sale-price">14,900원</div>
+                    </div>
+                </div>
+            </a>
+            <a href="ac-cream-detail.html" style="text-decoration: none; color: inherit;" onclick="trackGA4Event('product_list_click', {product_id: 'AC-CREAM-001', product_name: 'AC 딥 장벽 진정 크림 60ml', price: 17900});">
+                <div class="product-card" data-product-id="AC-CREAM-001" data-product-name="AC 딥 장벽 진정 크림 60ml" data-price="17900">
+                    <div class="sale-badge">SALE</div>
+                    <div class="product-image">
+                        <img src="/images/ac-cream.jpg" alt="AC 딥 장벽 진정 크림">
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name">AC 딥 장벽 진정 크림 60ml</h2>
+                        <div class="original-price">28,000원</div>
+                        <div class="sale-price">17,900원</div>
+                    </div>
+                </div>
+            </a>
+            <a href="ac-ampoule-detail.html" style="text-decoration: none; color: inherit;" onclick="trackGA4Event('product_list_click', {product_id: 'AC-AMPOULE-001', product_name: 'AC 딥 장벽 진정 앰플 기획세트 60ml', price: 17900});">
+                <div class="product-card" data-product-id="AC-AMPOULE-001" data-product-name="AC 딥 장벽 진정 앰플 기획세트 60ml" data-price="17900">
+                    <div class="sale-badge">SALE</div>
+                    <div class="product-image">
+                        <img src="/images/ac-ampoule.jpg" alt="AC 딥 장벽 진정 앰플">
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name">AC 딥 장벽 진정 앰플 기획세트 60ml</h2>
+                        <div class="original-price">28,000원</div>
+                        <div class="sale-price">17,900원</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- AMINO Line Products -->
+            <a href="amino-powder-detail.html" style="text-decoration: none; color: inherit;" onclick="trackGA4Event('product_list_click', {product_id: 'AMINO-POWDER-001', product_name: '하이 아미노 올 효소 파우더 워시 50g', price: 16900});">
+                <div class="product-card" data-product-id="AMINO-POWDER-001" data-product-name="하이 아미노 올 효소 파우더 워시 50g" data-price="16900">
+                    <div class="sale-badge">SALE</div>
+                    <div class="product-image">
+                        <img src="/images/amino-powder.jpg" alt="하이 아미노 올 효소 파우더 워시">
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name">하이 아미노 올 효소 파우더 워시 50g</h2>
+                        <div class="original-price">19,000원</div>
+                        <div class="sale-price">16,900원</div>
+                    </div>
+                </div>
+            </a>
+            <a href="cleansing-balm-detail.html" style="text-decoration: none; color: inherit;" onclick="trackGA4Event('product_list_click', {product_id: 'AMINO-BALM-001', product_name: '하이 아미노 모공 올 딥 클렌징 밤 90ml', price: 16900});">
+                <div class="product-card" data-product-id="AMINO-BALM-001" data-product-name="하이 아미노 모공 올 딥 클렌징 밤 90ml" data-price="16900">
+                    <div class="sale-badge">SALE</div>
+                    <div class="product-image">
+                        <img src="/images/amino-balm.jpg" alt="하이 아미노 모공 올 딥 클렌징 밤">
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name">하이 아미노 모공 올 딥 클렌징 밤 90ml</h2>
+                        <div class="original-price">24,000원</div>
+                        <div class="sale-price">16,900원</div>
+                    </div>
+                </div>
+            </a>
+            <a href="cleansing-milk-detail.html" style="text-decoration: none; color: inherit;" onclick="trackGA4Event('product_list_click', {product_id: 'AMINO-MILK-001', product_name: '하이 아미노 올 클렌징 밀크 400ml', price: 19800});">
+                <div class="product-card" data-product-id="AMINO-MILK-001" data-product-name="하이 아미노 올 클렌징 밀크 400ml" data-price="19800">
+                    <div class="sale-badge">SALE</div>
+                    <div class="product-image">
+                        <img src="/images/amino-milk.gif" alt="하이 아미노 올 클렌징 밀크">
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name">하이 아미노 올 클렌징 밀크 400ml</h2>
+                        <div class="original-price">38,000원</div>
+                        <div class="sale-price">19,800원</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">DEWYTREE</div>
+            <div class="footer-links">
+                <a href="#">회사소개</a>
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용안내</a>
+                <a href="#">고객센터</a>
+            </div>
+            <div class="footer-info">
+                <p>상호: (주)듀이트리 | 대표: 장용훈 | 사업자등록번호: 750-86-00559</p>
+                <p>주소: 서울특별시 강남구 봉은사로 322, 3층(역삼동, 창영빌딩)</p>
+                <p>이메일: dewytree@dewytree.com | 전화: 02-1234-5678</p>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 DEWYTREE. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/src/product.js"></script>
+</body>
+</html> 

@@ -1,0 +1,664 @@
+/* AC/AMINO 라인 상세페이지 공통 CSS */
+/* 아래는 amino-powder-detail.html의 <style>~</style> 전체 CSS */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex: 1;
+}
+
+.logo {
+    color: #000000;
+    font-weight: 700;
+    font-size: 28px;
+    min-width: 120px;
+    cursor: pointer;
+}
+
+.cart-icon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.cart-icon:hover {
+    opacity: 0.7;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    flex: 1;
+    margin-right: 120px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px 15px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #333;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #333;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown > a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 400px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 1000;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    gap: 40px;
+}
+
+.menu-column {
+    flex: 1;
+}
+
+.menu-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.submenu li {
+    margin-bottom: 10px;
+}
+
+.submenu a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    padding: 0;
+    height: auto;
+}
+
+.submenu a:hover {
+    color: #6200ea;
+}
+
+.submenu a::after {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .header-left {
+        order: 1;
+        flex-basis: 100%;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .nav-menu {
+        gap: 50px;
+        margin-right: 0;
+    }
+
+    .cart-icon {
+        order: 0;
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        gap: 30px;
+    }
+
+    .nav-menu a {
+        font-size: 14px;
+    }
+}
+
+.product-detail {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.product-image {
+    width: 100%;
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.breadcrumb {
+    display: flex;
+    gap: 10px;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.breadcrumb a {
+    color: #666;
+    text-decoration: none;
+}
+
+.breadcrumb span::before {
+    content: ">";
+    margin: 0 5px;
+}
+
+.product-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.product-description {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.price-info {
+    margin-bottom: 30px;
+}
+
+.price-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.original-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 16px;
+}
+
+.sale-price {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 5px 0;
+}
+
+.discount-rate {
+    color: #ff6b6b;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.shipping-info {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.product-select {
+    margin-bottom: 30px;
+}
+
+.product-select select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.quantity-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.quantity-controls button {
+    border: none;
+    background: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.quantity-controls input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 8px 0;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.total-price-label {
+    font-size: 16px;
+    color: #333;
+}
+
+.total-price-amount {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.buy-now-button {
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.add-to-cart-button {
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.buy-now-button:hover {
+    background-color: #444;
+}
+
+.add-to-cart-button:hover {
+    background-color: #f5f5f5;
+}
+
+/* 모바일 반응형 스타일 */
+@media (max-width: 768px) {
+    .product-detail {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 15px;
+        margin: 20px auto;
+    }
+
+    .product-image {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .product-info {
+        padding: 0;
+    }
+
+    .product-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .product-description {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .sale-price {
+        font-size: 24px;
+    }
+
+    .original-price {
+        font-size: 14px;
+    }
+
+    .shipping-info {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .product-select select {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .quantity-selector {
+        margin-bottom: 20px;
+    }
+
+    .quantity-label {
+        font-size: 13px;
+    }
+
+    .quantity-controls button {
+        padding: 6px 10px;
+    }
+
+    .quantity-controls input {
+        width: 40px;
+        padding: 6px 0;
+    }
+
+    .total-price {
+        margin-bottom: 20px;
+        padding: 15px 0;
+    }
+
+    .total-price-label {
+        font-size: 14px;
+    }
+
+    .total-price-amount {
+        font-size: 20px;
+    }
+
+    .action-buttons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 15px;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        margin: 0;
+    }
+
+    .buy-now-button,
+    .add-to-cart-button {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .footer {
+        margin-bottom: 80px;
+    }
+
+    .breadcrumb {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+}
+
+/* 작은 모바일 화면을 위한 추가 스타일 */
+@media (max-width: 480px) {
+    .product-detail {
+        margin: 10px auto;
+    }
+
+    .product-title {
+        font-size: 18px;
+    }
+
+    .sale-price {
+        font-size: 22px;
+    }
+
+    .action-buttons {
+        padding: 10px;
+    }
+
+    .buy-now-button,
+    .add-to-cart-button {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+/* Footer 스타일 */
+.footer {
+    background: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    margin-top: 60px;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-logo {
+    position: absolute;
+    left: 40px;
+    top: 18%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-info {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.footer-info p {
+    margin: 5px 0;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .footer-logo {
+        position: static;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .footer-content {
+        padding: 0 15px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+/* 장바구니 팝업 스타일 */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    z-index: 1000;
+    min-width: 300px;
+}
+
+.popup-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.popup-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.popup-button {
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.continue-shopping {
+    background: white;
+    border: 1px solid #333;
+    color: #333;
+}
+
+.go-to-cart {
+    background: #333;
+    border: none;
+    color: white;
+}
+
+@media (max-width: 480px) {
+    .popup {
+        width: 85%;
+        min-width: auto;
+        padding: 20px;
+    }
+
+    .popup-title {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    .popup-button {
+        font-size: 13px;
+        padding: 10px;
+    }
+}

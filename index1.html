@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DEWYTREE - Natural Glow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Analytics 태그 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFQZ1B9D87"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VFQZ1B9D87');
+
+        // GA4 이벤트 추적 함수
+        function trackGA4Event(eventName, eventParams) {
+            gtag('event', eventName, eventParams);
+        }
+    </script>
+    <link rel="stylesheet" href="/src/index1.css">
+    <script src="/src/index1.js"></script>
+    <script>
+        // 페이지 로드 시 버전 설정
+        window.addEventListener('load', function() {
+            sessionStorage.setItem('currentVersion', 'a');
+        });
+
+        // setVersionAndGo 함수는 유지 (로고 클릭용)
+        function setVersionAndGo(version) {
+            localStorage.setItem('currentVersion', version);
+            window.location.href = 'index1.html';
+        }
+
+        // 제품 상세 페이지로 이동 함수
+        function goToProductDetail(url, versionType) {
+            sessionStorage.setItem('mainVersion', '1');
+            sessionStorage.setItem('currentVersion', versionType);
+            const urlVersion = (versionType === 'a' ? '1' : '2');
+            console.log('Debug (index1.html): Navigating to product detail with urlVersion:', urlVersion, 'for url:', url);
+            window.location.href = url + '?v=' + urlVersion;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <div class="logo" onclick="location.href='index1.html'">DEWYTREE</div>
+                <nav class="nav-menu">
+                    <a href="brand.html">BRAND</a>
+                    <div class="dropdown">
+                        <a href="product.html">PRODUCT</a>
+                        <div class="dropdown-content">
+                            <div class="menu-column">
+                                <div class="menu-title">BY LINE</div>
+                                <ul class="submenu">
+                                    <li><a href="javascript:void(0)" onclick="goToProductDetail('ac-product.html', 'a')">AC라인</a></li>
+                                    <li><a href="javascript:void(0)" onclick="goToProductDetail('amino-product.html', 'a')">AMINO라인</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="best.html">BEST</a>
+                </nav>
+            </div>
+            <div class="cart-icon" onclick="location.href='cart.html'">🛒</div>
+        </header>
+        
+        <div class="version-a-content">
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">DEWYTREE<br />AC 흔적 진정 라인</h1>
+                    <p class="hero-subtitle">당신의 피부 컨디션을 가꾸는 데일리 AC루틴</p>
+                    <a href="javascript:void(0)" onclick="goToProductDetail('ac-product.html', 'a'); trackGA4Event('purchase_click', {product_line: 'AC', location: 'hero_section'});" class="cta-button">지금 구매하기</a>
+                </div>
+                <div class="hero-image-container">
+                    <a href="javascript:void(0)" onclick="goToProductDetail('ac-product.html', 'a')">
+                        <img src="/images/main01.jpg" alt="DEWYTREE AC 라인 프로모션">
+                    </a>
+                </div>
+            </section>
+
+            <section class="best-sellers-section">
+                <h2 class="section-title">BEST SELLERS</h2>
+                <div class="products-grid">
+                    <!-- AC Line Products -->
+                    <div class="product-row">
+                        <div class="product-card" data-product-id="AC-AMPOULE-001" data-price="17900" onclick="goToProductDetail('ac-ampoule-detail.html', 'a'); trackGA4Event('product_click', {product_id: 'AC-AMPOULE-001', product_name: 'AC 딥 장벽 진정 앰플 기획세트', price: 17900});">
+                            <img src="/images/ac-ampoule.jpg" alt="AC 딥 포어 앰플">
+                            <h3>AC 딥 장벽 진정 앰플 기획세트 60ml</h3>
+                            <p class="price">
+                                <span class="original-price">28,000원</span>
+                                <span class="sale-price">17,900원</span>
+                                <span class="discount-rate">36%</span>
+                            </p>
+                        </div>
+                        <div class="product-card" data-product-id="AC-CREAM-001" data-price="17900" onclick="goToProductDetail('ac-cream-detail.html', 'a'); trackGA4Event('product_click', {product_id: 'AC-CREAM-001', product_name: 'AC 딥 장벽 진정 크림', price: 17900});">
+                            <img src="/images/ac-cream.jpg" alt="AC 딥 포어 크림">
+                            <h3>AC 딥 장벽 진정 크림 60ml</h3>
+                            <p class="price">
+                                <span class="original-price">28,000원</span>
+                                <span class="sale-price">17,900원</span>
+                                <span class="discount-rate">36%</span>
+                            </p>
+                        </div>
+                        <div class="product-card" data-product-id="AC-MASK-001" data-price="14900" onclick="goToProductDetail('ac-mask-detail.html', 'a'); trackGA4Event('product_click', {product_id: 'AC-MASK-001', product_name: 'AC 딥 훼이셜 진정 마스크', price: 14900});">
+                            <img src="/images/ac-mask-pack.jpg" alt="AC 딥 포어 마스크">
+                            <h3>AC 딥 훼이셜 진정 마스크 10매</h3>
+                            <p class="price">
+                                <span class="original-price">30,000원</span>
+                                <span class="sale-price">14,900원</span>
+                                <span class="discount-rate">50%</span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Amino Line Products -->
+                    <div class="product-row">
+                        <div class="product-card" onclick="goToProductDetail('amino-powder-detail.html', 'a'); trackGA4Event('product_click', {product_id: 'AMINO-POWDER-001', product_name: '하이 아미노 올 효소 파우더 워시', price: 16900});">
+                            <img src="/images/amino-powder.jpg" alt="아미노 파우더 워시">
+                            <h3>하이 아미노 올 효소 파우더 워시</h3>
+                            <p class="price">
+                                <span class="original-price">19,000원</span><br>
+                                <span class="sale-price">16,900원</span>
+                                <span class="discount-rate">11%</span>
+                            </p>
+                        </div>
+                        <div class="product-card" onclick="goToProductDetail('cleansing-balm-detail.html', 'a'); trackGA4Event('product_click', {product_id: 'AMINO-BALM-001', product_name: '하이 아미노 모공 올 딥 클렌징 밤', price: 22500});">
+                            <img src="/images/amino-balm.jpg" alt="클렌징 밤">
+                            <h3>하이 아미노 모공 올 딥 클렌징 밤</h3>
+                            <p class="price">
+                                <span class="original-price">25,000원</span><br>
+                                <span class="sale-price">22,500원</span>
+                                <span class="discount-rate">10%</span>
+                            </p>
+                        </div>
+                        <div class="product-card" onclick="goToProductDetail('cleansing-milk-detail.html', 'a'); trackGA4Event('product_click', {product_id: 'AMINO-MILK-001', product_name: '하이 아미노 올 클렌징 밀크', price: 19800});">
+                            <img src="/images/amino-milk.gif" alt="클렌징 밀크">
+                            <h3>하이 아미노 올 클렌징 밀크</h3>
+                            <p class="price">
+                                <span class="original-price">22,000원</span><br>
+                                <span class="sale-price">19,800원</span>
+                                <span class="discount-rate">10%</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="features-section">
+                <h2 class="section-title">자연이 주는 특별함</h2>
+                <p class="section-subtitle">DEWYTREE만의 자연 성분으로 건강하고 아름다운 피부를 경험하세요</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌿</div>
+                        <h3>자연 성분</h3>
+                        <p>엄선된 자연 원료로 민감한 피부도 안심하고 사용할 수 있습니다</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h3>글로우 효과</h3>
+                        <p>건강한 윤기와 촉촉함을 동시에 선사하는 특별한 포뮬러</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔬</div>
+                        <h3>과학적 검증</h3>
+                        <p>철저한 연구와 테스트를 통해 검증된 안전하고 효과적인 제품</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">DEWYTREE</div>
+                <div class="footer-links">
+                    <a href="#">회사소개</a>
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">고객센터</a>
+                </div>
+                <div class="footer-info">
+                    <p>상호명: (주)듀이트리 | 대표: 홍길동 | 사업자등록번호: 123-45-67890</p>
+                    <p>주소: 서울특별시 강남구 테헤란로 123 | 대표전화: 02-123-4567</p>
+                    <p>이메일: help@dewytree.com | 통신판매업신고: 제2023-서울강남-1234호</p>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2024 DEWYTREE. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

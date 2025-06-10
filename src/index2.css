@@ -1,0 +1,581 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+}
+
+.logo {
+    color: #000000;
+    font-weight: 700;
+    font-size: 28px;
+    min-width: 120px;
+}
+
+.best-sellers-section {
+    width: 100%;
+    padding: 60px 0;
+    margin: 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+.products-grid {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.product-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.product-row:last-child {
+    margin-bottom: 0;
+}
+
+.product-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-card .price {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.product-card .original-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 14px;
+}
+
+.product-card .sale-price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.product-card .discount-rate {
+    color: #ff6b6b;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.5em;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .product-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+        font-size: 16px;
+    }
+
+    .product-card .price {
+        font-size: 14px;
+    }
+
+    .products-grid,
+    .features-grid {
+        padding: 0 15px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .product-row {
+        grid-template-columns: 1fr;
+    }
+
+    .best-sellers-section {
+        padding: 40px 15px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Version B 스타일 */
+.version-b-content {
+    --primary-color: #6A1B9A;  /* 보라색 계열 */
+    --background-color: #E3F2FD;  /* 연한 하늘색 */
+    --text-color: #4A148C;  /* 진한 보라색 */
+}
+
+.version-b-content .hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5% 5%;
+    height: 55vh;
+    background-color: #E3F2FD !important;  /* 연한 하늘색 */
+    background: #E3F2FD !important;
+    background-image: none !important;
+}
+
+.version-b-content .hero-content {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 5%;
+}
+
+.version-b-content .hero-title {
+    font-size: 3.5em;
+    font-weight: 700;
+    color: #6A1B9A !important;  /* 보라색 계열 */
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.version-b-content .hero-subtitle {
+    font-size: 1.4em;
+    color: #757575 !important;  /* 연한 그레이색으로 수정 */
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.version-b-content .cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #6A1B9A !important;  /* 보라색 계열 */
+    color: white !important;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.version-b-content .cta-button:hover {
+    background-color: #4A148C !important;  /* 진한 보라색 */
+}
+
+.version-b-content .hero-image-container {
+    flex: 1;
+    max-width: 42%;
+    height: 72%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-right: 60px;
+}
+
+.version-b-content .hero-image-container img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .version-b-content .hero-section {
+        flex-direction: column;
+        height: auto;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .version-b-content .hero-content {
+        max-width: 100%;
+        padding-right: 0;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .version-b-content .hero-title {
+        font-size: 2.5em;
+        margin-bottom: 1rem;
+    }
+
+    .version-b-content .hero-subtitle {
+        font-size: 1.1em;
+        margin-bottom: 1.5rem;
+    }
+
+    .version-b-content .hero-image-container {
+        max-width: 80%;
+        margin: 0 auto;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .version-b-content .hero-title {
+        font-size: 2em;
+    }
+
+    .version-b-content .hero-subtitle {
+        font-size: 1em;
+    }
+}
+
+/* 기존 헤더 스타일은 변경하지 않습니다. */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex: 1;
+}
+
+.cart-icon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.cart-icon:hover {
+    opacity: 0.7;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    flex: 1;
+    margin-right: 120px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px 15px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #333;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #333;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown > a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 1000;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    gap: 20px;
+}
+
+.menu-column {
+    flex: 1;
+}
+
+.menu-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.submenu li {
+    margin-bottom: 10px;
+}
+
+.submenu a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    padding: 0;
+    height: auto;
+}
+
+.submenu a:hover {
+    color: #6200ea;
+}
+
+.submenu a::after {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .header-left {
+        order: 1;
+        flex-basis: 100%;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .nav-menu {
+        gap: 50px;
+        margin-right: 0;
+    }
+
+    .cart-icon {
+        order: 0;
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        gap: 30px;
+    }
+
+    .nav-menu a {
+        font-size: 14px;
+    }
+}
+
+/* Footer 스타일 */
+.footer {
+    background: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    margin-top: 60px;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-logo {
+    position: absolute;
+    left: 40px;
+    top: 18%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-info {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.footer-info p {
+    margin: 5px 0;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .footer-logo {
+        font-size: 24px;
+        margin-bottom: 1rem;
+    }
+    
+    .footer-content {
+        padding: 2rem 1rem;
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+/* 제거: 모든 AC 라인 관련 숨김 스타일 */
+/* .product-card[data-product-id^="AC-"] {
+    display: none !important;
+}
+
+[data-product-id^="AC-"],
+.product-card[onclick*="ac-"],
+a[href*="ac-"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+} */
+
+/* 네비게이션 메뉴에서 AC 라인 숨김 */
+.submenu a[href*="version-a"],
+.submenu a[onclick*="saveVersion('A')"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+} 

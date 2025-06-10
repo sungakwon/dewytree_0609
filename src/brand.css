@@ -1,0 +1,321 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex: 1;
+}
+
+.logo {
+    color: #000000;
+    font-weight: 700;
+    font-size: 28px;
+    min-width: 120px;
+    cursor: pointer;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    flex: 1;
+    margin-right: 120px;
+    align-items: center;
+    height: 40px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px 15px;
+    position: relative;
+    transition: color 0.3s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu a:hover {
+    color: #a8d954;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #a8d954;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown > a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 1000;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    gap: 20px;
+}
+
+.menu-column {
+    flex: 1;
+}
+
+.menu-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.submenu li {
+    margin-bottom: 10px;
+}
+
+.submenu a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    padding: 0;
+    height: auto;
+}
+
+.submenu a:hover {
+    color: #a8d954;
+}
+
+.submenu a::after {
+    display: none;
+}
+
+.cart-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.brand-hero {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-hero .logo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 64px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.brand-content {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.brand-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.brand-description {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+    white-space: pre-line;
+    text-align: center;
+}
+
+.notice {
+    font-size: 14px;
+    color: #666;
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Footer 스타일 */
+.footer {
+    background: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    margin-top: 60px;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-logo {
+    position: absolute;
+    left: 40px;
+    top: 18%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-info {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.footer-info p {
+    margin: 5px 0;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .header-left {
+        order: 1;
+        flex-basis: 100%;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .nav-menu {
+        gap: 50px;
+        margin-right: 0;
+    }
+
+    .cart-icon {
+        order: 0;
+        margin-left: auto;
+    }
+
+    .brand-hero {
+        height: 400px;
+    }
+
+    .brand-hero .logo-overlay {
+        font-size: 48px;
+    }
+
+    .brand-title {
+        font-size: 28px;
+    }
+
+    .brand-description {
+        font-size: 16px;
+    }
+
+    .footer-logo {
+        position: static;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .footer-content {
+        padding: 0 15px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+} 

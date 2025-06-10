@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics 태그 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFQZ1B9D87"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VFQZ1B9D87');
+
+        // GA4 이벤트 추적 함수
+        function trackGA4Event(eventName, eventParams) {
+            gtag('event', eventName, eventParams);
+        }
+    </script>
+    <title>DEWYTREE - 장바구니</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/cart.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo" style="cursor: pointer;" onclick="goToHome()">DEWYTREE</div>
+    </header>
+
+    <main class="cart-container">
+        <h1 class="cart-title">🛒 장바구니</h1>
+        
+        <div id="cartContent">
+            <!-- 장바구니가 비어있을 때 -->
+            <div class="cart-empty">
+                <p>장바구니가 비어있습니다.</p>
+                <button class="continue-shopping-btn" onclick="goToHome()">쇼핑 계속하기</button>
+            </div>
+
+            <!-- 장바구니에 상품이 있을 때 (기본적으로 숨김) -->
+            <div class="cart-items" style="display: none;">
+                <!-- 장바구니 아이템들이 여기에 동적으로 추가됨 -->
+            </div>
+
+            <div class="cart-summary" style="display: none;">
+                <div class="summary-row">
+                    <span>상품금액</span>
+                    <span id="subtotal">0원</span>
+                </div>
+                <div class="summary-row">
+                    <span>배송비</span>
+                    <span id="shipping">3,000원</span>
+                </div>
+                <div class="summary-total">
+                    <span>결제예정금액</span>
+                    <span id="total">0원</span>
+                </div>
+                <div class="cart-buttons">
+                    <button class="continue-shopping-btn" onclick="goToHome()">쇼핑 계속하기</button>
+                    <button class="checkout-btn" onclick="checkout(); trackGA4Event('begin_checkout', {currency: 'KRW', value: parseFloat(document.getElementById('total').innerText.replace('원', '').replace(',', ''))});">구매하기</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 DEWYTREE. All rights reserved.</p>
+    </footer>
+
+    <script src="/src/cart2.js"></script>
+</body>
+</html> 

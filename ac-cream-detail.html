@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics 태그 -->
+    <script>
+        // HTML 파싱 직후 URL 정보 로깅
+        console.log('EARLY DEBUG: ac-cream-detail.html - window.location.href:', window.location.href);
+        console.log('EARLY DEBUG: ac-cream-detail.html - window.location.search:', window.location.search);
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFQZ1B9D87"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VFQZ1B9D87');
+
+        // GA4 이벤트 추적 함수
+        function trackGA4Event(eventName, eventParams) {
+            gtag('event', eventName, eventParams);
+        }
+
+        // 디버깅을 위한 추가 로그
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const version = urlParams.get('v');
+            console.log('DEBUG: ac-cream-detail.html - window.location.search:', window.location.search);
+            console.log('DEBUG: ac-cream-detail.html - v parameter:', version);
+        });
+    </script>
+    <title>DEWYTREE - AC 딥 장벽 진정 크림</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/ac-detail-common.css">
+    <!-- 상품 정보 설정 -->
+    <script>
+        window.productDetail = {
+            id: 'AC-CREAM-001',
+            name: 'AC 딥 장벽 진정 크림',
+            price: 17900,
+            image: '/images/ac-cream.jpg'
+        };
+    </script>
+    <script src="/src/ac-detail-common.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo" onclick="goToMainPage()">DEWYTREE</div>
+            <nav class="nav-menu">
+                <a href="brand2.html">BRAND</a>
+                <div class="dropdown">
+                    <a href="#product">PRODUCT</a>
+                    <div class="dropdown-content">
+                        <div class="menu-column">
+                            <div class="menu-title">BY LINE</div>
+                            <ul class="submenu">
+                                <li><a href="amino-product.html#version-a">AC라인</a></li>
+                                <li><a href="amino-product.html#version-b">AMINO라인</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <a href="best2.html">BEST</a>
+            </nav>
+        </div>
+        <div class="cart-icon" onclick="goToCart()">🛒</div>
+    </header>
+
+    <main class="product-detail">
+        <div class="product-image">
+            <img src="/images/ac-cream.jpg" alt="AC 딥 장벽 진정 크림">
+        </div>
+
+        <div class="product-info">
+            <div class="breadcrumb">
+                <a href="/">HOME</a>
+                <span>PRODUCT</span>
+                <span>AC라인</span>
+            </div>
+
+            <h1 class="product-title">AC 딥 장벽 진정 크림 60ml</h1>
+            <p class="product-description">피부 진정과 보습을 동시에, 민감한 피부를 위한 특별한 케어</p>
+
+            <div class="price-info">
+                <div class="price-label">판매가</div>
+                <div class="sale-price">17,900원 <span class="discount-rate">36%</span></div>
+                <div class="original-price">28,000원</div>
+            </div>
+
+            <div class="shipping-info">
+                <p>배송비 3,000원 (19,800원 이상 구매 시 무료)</p>
+            </div>
+
+            <div class="quantity-selector">
+                <div class="quantity-label">수량</div>
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity()">-</button>
+                    <input type="text" value="1" id="quantity" onchange="handleQuantityInput()" readonly>
+                    <button onclick="increaseQuantity()">+</button>
+                </div>
+            </div>
+
+            <div class="total-price">
+                <div class="total-price-label">총 상품 금액</div>
+                <div class="total-price-amount">17,900원</div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="add-to-cart-button" onclick="trackGA4Event('add_to_cart', {product_id: window.productDetail.id, product_name: window.productDetail.name, price: window.productDetail.price, quantity: parseInt(document.getElementById('quantity').value)})">장바구니 담기</button>
+                <button class="buy-now-button" onclick="trackGA4Event('buy_now', {product_id: window.productDetail.id, product_name: window.productDetail.name, price: window.productDetail.price, quantity: parseInt(document.getElementById('quantity').value)})">바로 구매하기</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">DEWYTREE</div>
+            <div class="footer-links">
+                <a href="#">회사소개</a>
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용안내</a>
+                <a href="#">고객센터</a>
+            </div>
+            <div class="footer-info">
+                <p>상호: (주)듀이트리 | 대표: 김대표 | 사업자등록번호: 123-45-67890</p>
+                <p>주소: 서울특별시 강남구 테헤란로 123, 듀이트리빌딩 4층</p>
+                <p>이메일: cs@dewytree.com | 전화: 02-1234-5678</p>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 DEWYTREE. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 장바구니 팝업 -->
+    <div id="overlay" class="overlay" style="display: none;"></div>
+    <div id="cartPopup" class="popup" style="display: none;">
+        <div class="popup-title">장바구니에 상품이 담겼습니다</div>
+        <div class="popup-buttons">
+            <button class="popup-button continue-shopping" onclick="closePopup()">쇼핑 계속하기</button>
+            <button class="popup-button go-to-cart" onclick="goToCart()">장바구니로 이동</button>
+        </div>
+    </div>
+</body>
+</html> 

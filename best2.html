@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEWYTREE - BEST PRODUCTS</title>
+    <!-- Google Analytics 태그 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFQZ1B9D87"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VFQZ1B9D87');
+
+        // GA4 이벤트 추적 함수
+        function trackGA4Event(eventName, eventParams) {
+            gtag('event', eventName, eventParams);
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/best.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo" onclick="location.href='index2.html'" style="cursor: pointer;">DEWYTREE</div>
+            <nav class="nav-menu">
+                <a href="brand2.html">BRAND</a>
+                <div class="dropdown">
+                    <a href="product2.html">PRODUCT</a>
+                    <div class="dropdown-content">
+                        <div class="menu-column">
+                            <div class="menu-title">BY LINE</div>
+                            <ul class="submenu">
+                                <li><a href="amino-product.html#version-a" onclick="saveVersion('A'); return true;">AC라인</a></li>
+                                <li><a href="amino-product.html#version-b" onclick="saveVersion('B'); return true;">AMINO라인</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <a href="best2.html">BEST</a>
+            </nav>
+        </div>
+        <div class="cart-icon" onclick="location.href='cart2.html'">🛒</div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="page-title">BEST PRODUCT</h1>
+        <div class="best-products">
+            <div class="product-card" onclick="trackGA4Event('best_product_click', {product_category: 'BEST REVIEW', product_name: '메이크업 하기 전 딱 1장! 초강력 화잘먹 패드'});">
+                <div class="product-info">
+                    <div class="product-category">BEST REVIEW</div>
+                    <h2 class="product-title">메이크업 하기 전 딱 1장! 초강력 화잘먹 패드</h2>
+                    <p class="product-description">픽앤퀵 화장발 뜯어쓰는 더블 패드<br>
+                    완전 제가 원하는 스킨 패드에요!<br>
+                    화장발 패드 사용했을 때랑 안 했을 때랑 피부 화장 표현이 달라요.<br>
+                    패드도 얇아서 밀착력도 좋고 엄청 촉촉해요! 3분할이라,<br>
+                    턱에도 붙일 수 있어서 좋아요.</p>
+                    <div class="product-rating">★★★★★</div>
+                </div>
+                <img src="/images/best-product-1.jpg" alt="메이크업 히가전 딱! 초강력 화장픽 패드" class="product-image">
+            </div>
+
+            <div class="product-card" onclick="trackGA4Event('best_product_click', {product_category: 'BEST REVIEW', product_name: '쫀쫀한 스네일로 촉촉하게 차오르는 피부 탄력'});">
+                <div class="product-info">
+                    <div class="product-category">BEST REVIEW</div>
+                    <h2 class="product-title">쫀쫀한 스네일로 촉촉하게 차오르는 피부 탄력</h2>
+                    <p class="product-description">울트라 너리싱 스네일 크림<br>
+                    벌써 한 통 다 비우고 재구매에요!<br>
+                    스네일 크림 듬뿍 바르고 자연 건조했던 피부가<br>
+                    완전 맨들 맨들거려요 4계절 내내 너무 잘 쓰고 있어요.</p>
+                    <div class="product-rating">★★★★★</div>
+                </div>
+                <img src="/images/best-product-2.jpg" alt="쫀쫀한 스네일로 촉촉하게 차오르는 피부 탄력" class="product-image">
+            </div>
+
+            <div class="product-card" onclick="trackGA4Event('best_product_click', {product_category: 'BEST REVIEW', product_name: '자극제로 촉촉밀크로 순하게 올 클렌징'});">
+                <div class="product-info">
+                    <div class="product-category">BEST REVIEW</div>
+                    <h2 class="product-title">자극제로 촉촉밀크로 순하게 올 클렌징</h2>
+                    <p class="product-description">하이 아미노 올 클렌징 밀크<br>
+                    손에 꼽는 클렌징 찐템이에요!제 피부가 예민해서<br>
+                    이런저런 제품 다 써봤는데 가장 만족해서 사요하고 있어요.<br>
+                    저자극이고 클렌징 마무리감도 너무 좋아요!</p>
+                    <div class="product-rating">★★★★★</div>
+                </div>
+                <img src="/images/best-product-3.jpg" alt="자극제로 촉촉밀크로 순하게 클렌징" class="product-image">
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">DEWYTREE</div>
+            <div class="footer-links">
+                <a href="#">회사소개</a>
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용안내</a>
+                <a href="#">고객센터</a>
+            </div>
+            <div class="footer-info">
+                <p>상호: (주)듀이트리 | 대표: 김대표 | 사업자등록번호: 123-45-67890</p>
+                <p>주소: 서울특별시 강남구 테헤란로 123, 듀이트리빌딩 4층</p>
+                <p>이메일: cs@dewytree.com | 전화: 02-1234-5678</p>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 DEWYTREE. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
