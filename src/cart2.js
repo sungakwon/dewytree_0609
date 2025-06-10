@@ -42,6 +42,42 @@ function loadCartItems() {
     });
 
     updateCartSummary(subtotal);
+
+    // 수량 조절 버튼 이벤트 리스너 추가
+    const minusBtns = document.querySelectorAll('.quantity-btn.minus');
+    const plusBtns = document.querySelectorAll('.quantity-btn.plus');
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    const removeBtns = document.querySelectorAll('.cart-item-remove');
+
+    minusBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            updateQuantity(index, -1);
+        });
+    });
+
+    plusBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            updateQuantity(index, 1);
+        });
+    });
+
+    quantityInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+            const index = parseInt(e.target.closest('.quantity-controls').querySelector('.quantity-btn').dataset.index);
+            const value = Math.max(1, parseInt(e.target.value) || 1);
+            e.target.value = value;
+            updateQuantityInput(index, value);
+        });
+    });
+
+    removeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            removeItem(index);
+        });
+    });
 }
 
 // 장바구니 아이템 요소 생성
@@ -60,12 +96,12 @@ function createCartItemElement(item, index) {
         </div>
         <div class="cart-item-quantity">
             <div class="quantity-controls">
-                <button onclick="updateQuantity(${index}, -1)">-</button>
-                <input type="number" value="${item.quantity}" min="1" onchange="updateQuantityInput(${index}, this.value)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                <button onclick="updateQuantity(${index}, 1)">+</button>
+                <button data-index="${index}" class="quantity-btn minus">-</button>
+                <input type="number" value="${item.quantity}" min="1" class="quantity-input">
+                <button data-index="${index}" class="quantity-btn plus">+</button>
             </div>
         </div>
-        <span class="cart-item-remove" onclick="removeItem(${index})">✕</span>
+        <span class="cart-item-remove" data-index="${index}">✕</span>
     `;
     return div;
 }

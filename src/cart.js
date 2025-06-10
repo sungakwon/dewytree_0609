@@ -51,12 +51,12 @@ function renderCartItems() {
             </div>
             <div class="cart-item-quantity">
                 <div class="quantity-controls">
-                    <button onclick="updateQuantity(${index}, -1)">-</button>
-                    <input type="number" value="${item.quantity}" min="1" onchange="updateQuantityInput(${index}, this.value)">
-                    <button onclick="updateQuantity(${index}, 1)">+</button>
+                    <button data-index="${index}" class="quantity-btn minus">-</button>
+                    <input type="number" value="${item.quantity}" min="1" class="quantity-input">
+                    <button data-index="${index}" class="quantity-btn plus">+</button>
                 </div>
             </div>
-            <div class="cart-item-remove" onclick="removeItem(${index})">✕</div>
+            <div class="cart-item-remove" data-index="${index}">✕</div>
         `;
         cartItemsContainer.appendChild(itemElement);
     });
@@ -66,6 +66,42 @@ function renderCartItems() {
     document.getElementById('subtotal').textContent = subtotal.toLocaleString() + '원';
     document.getElementById('shipping').textContent = shipping.toLocaleString() + '원';
     document.getElementById('total').textContent = (subtotal + shipping).toLocaleString() + '원';
+
+    // 수량 조절 버튼 이벤트 리스너 추가
+    const minusBtns = document.querySelectorAll('.quantity-btn.minus');
+    const plusBtns = document.querySelectorAll('.quantity-btn.plus');
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    const removeBtns = document.querySelectorAll('.cart-item-remove');
+
+    minusBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            updateQuantity(index, -1);
+        });
+    });
+
+    plusBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            updateQuantity(index, 1);
+        });
+    });
+
+    quantityInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+            const index = parseInt(e.target.closest('.quantity-controls').querySelector('.quantity-btn').dataset.index);
+            const value = Math.max(1, parseInt(e.target.value) || 1);
+            e.target.value = value;
+            updateQuantityInput(index, value);
+        });
+    });
+
+    removeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            removeItem(index);
+        });
+    });
 }
 
 // 수량 업데이트
