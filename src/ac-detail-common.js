@@ -148,6 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
     totalPriceAmount = document.querySelector('.total-price-amount');
     const addToCartButton = document.querySelector('.add-to-cart-button');
     const buyNowButton = document.querySelector('.buy-now-button');
+    const continueShoppingButton = document.querySelector('.continue-shopping');
+    const goToCartButton = document.querySelector('.go-to-cart');
 
     // 수량 변경 버튼 이벤트 리스너
     const decreaseButton = document.querySelector('.quantity-controls button:first-child');
@@ -265,6 +267,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // 장바구니 페이지로 이동
             window.location.href = getCurrentCartPage();
         });
+    }
+
+    // 장바구니 팝업 버튼 이벤트 리스너
+    if (continueShoppingButton) {
+        continueShoppingButton.addEventListener('click', closePopup);
+    }
+
+    if (goToCartButton) {
+        goToCartButton.addEventListener('click', goToCart);
     }
 });
 
