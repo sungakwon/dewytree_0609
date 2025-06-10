@@ -72,11 +72,16 @@ function createCartItemElement(item, index) {
 
 // 수량 업데이트
 function updateQuantity(index, change) {
-    const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-    if (cartItems[index]) {
-        cartItems[index].quantity = Math.max(1, cartItems[index].quantity + change);
-        localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
-        loadCartItems();
+    try {
+        const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+        if (cartItems[index]) {
+            cartItems[index].quantity = Math.max(1, cartItems[index].quantity + change);
+            localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+            loadCartItems();
+        }
+    } catch (error) {
+        console.error('수량 업데이트 중 오류 발생:', error);
+        alert('수량 업데이트 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
 }
 
