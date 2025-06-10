@@ -111,7 +111,7 @@ function updateTotalPrice() {
 function increaseQuantity(e) {
     e.stopPropagation();
     if (quantityInput) {
-        let value = parseInt(quantityInput.value) || 0;
+        let value = parseInt(quantityInput.value) || 1;
         value = Math.max(1, value + 1);
         quantityInput.value = value;
         updateTotalPrice();
@@ -133,10 +133,8 @@ function handleQuantityInput(e) {
     e.stopPropagation();
     if (quantityInput) {
         let value = parseInt(quantityInput.value);
-        if (isNaN(value)) {
+        if (isNaN(value) || value < 1) {
             value = 1;
-        } else {
-            value = Math.max(1, value);
         }
         quantityInput.value = value;
         updateTotalPrice();
