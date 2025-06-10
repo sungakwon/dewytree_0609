@@ -83,9 +83,9 @@
             <div class="quantity-selector">
                 <div class="quantity-label">수량</div>
                 <div class="quantity-controls">
-                    <button onclick="decreaseQuantity()">-</button>
-                    <input type="text" value="1" id="quantity" onchange="handleQuantityInput()" readonly>
-                    <button onclick="increaseQuantity()">+</button>
+                    <button>-</button>
+                    <input type="text" value="1" id="quantity" readonly>
+                    <button>+</button>
                 </div>
             </div>
 
@@ -95,8 +95,8 @@
             </div>
 
             <div class="action-buttons">
-                <button class="add-to-cart-button" onclick="trackGA4Event('add_to_cart', {product_id: window.productDetail.id, product_name: window.productDetail.name, price: window.productDetail.price, quantity: parseInt(document.getElementById('quantity').value)})">장바구니 담기</button>
-                <button class="buy-now-button" onclick="trackGA4Event('buy_now', {product_id: window.productDetail.id, product_name: window.productDetail.name, price: window.productDetail.price, quantity: parseInt(document.getElementById('quantity').value)})">바로 구매하기</button>
+                <button class="add-to-cart-button">장바구니 담기</button>
+                <button class="buy-now-button">바로 구매하기</button>
             </div>
         </div>
     </main>
