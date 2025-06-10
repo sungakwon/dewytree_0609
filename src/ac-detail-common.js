@@ -144,12 +144,23 @@ function goToMainPage() {
 
 // DOM이 로드된 후 이벤트 리스너 등록
 document.addEventListener('DOMContentLoaded', function() {
+    // DOM 요소 선택
     quantityInput = document.getElementById('quantity');
     totalPriceAmount = document.querySelector('.total-price-amount');
-    const addToCartButton = document.querySelector('.add-to-cart-button');
-    const buyNowButton = document.querySelector('.buy-now-button');
-    const continueShoppingButton = document.querySelector('.continue-shopping');
-    const goToCartButton = document.querySelector('.go-to-cart');
+    const addToCartButton = document.querySelector('.action-buttons .add-to-cart-button');
+    const buyNowButton = document.querySelector('.action-buttons .buy-now-button');
+    const continueShoppingButton = document.querySelector('.popup-buttons .continue-shopping');
+    const goToCartButton = document.querySelector('.popup-buttons .go-to-cart');
+
+    // 디버깅 로그
+    console.log('DOM Elements:', {
+        quantityInput: !!quantityInput,
+        totalPriceAmount: !!totalPriceAmount,
+        addToCartButton: !!addToCartButton,
+        buyNowButton: !!buyNowButton,
+        continueShoppingButton: !!continueShoppingButton,
+        goToCartButton: !!goToCartButton
+    });
 
     // 수량 변경 버튼 이벤트 리스너
     const decreaseButton = document.querySelector('.quantity-controls button:first-child');
