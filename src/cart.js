@@ -109,13 +109,15 @@ function renderCartItems() {
             <div class="cart-item-remove" data-index="${index}">✕</div>
         `;
 
-        // 수량 버튼 이벤트 리스너 추가
+        // 기존 이벤트 리스너 제거
         const minusBtn = itemElement.querySelector('.quantity-btn.minus');
         const plusBtn = itemElement.querySelector('.quantity-btn.plus');
         const quantityInput = itemElement.querySelector('.quantity-input');
         const removeBtn = itemElement.querySelector('.cart-item-remove');
 
+        // 기존 이벤트 리스너 제거
         if (minusBtn) {
+            minusBtn.removeEventListener('click', () => {});
             minusBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 updateQuantity(index, -1);
@@ -123,6 +125,7 @@ function renderCartItems() {
         }
 
         if (plusBtn) {
+            plusBtn.removeEventListener('click', () => {});
             plusBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 updateQuantity(index, 1);
@@ -130,6 +133,7 @@ function renderCartItems() {
         }
 
         if (quantityInput) {
+            quantityInput.removeEventListener('change', () => {});
             quantityInput.addEventListener('change', (e) => {
                 e.stopPropagation();
                 updateQuantityInput(index, e.target.value);
@@ -137,6 +141,7 @@ function renderCartItems() {
         }
 
         if (removeBtn) {
+            removeBtn.removeEventListener('click', () => {});
             removeBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 removeItem(index);
