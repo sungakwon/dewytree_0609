@@ -49,11 +49,8 @@ function createCartItemElement(item, index) {
     const div = document.createElement('div');
     div.className = 'cart-item';
     
-    // 이미지 경로 수정
-    let imagePath = item.image;
-    if (item.id === 'AC-MASK-001') {
-        imagePath = '/images/ac-mask-pack.jpg';
-    }
+    // 이미지 경로 처리
+    let imagePath = item.image || '/images/default-product.jpg'; // 기본 이미지 설정
     
     div.innerHTML = `
         <img src="${imagePath}" alt="${item.name}" class="cart-item-image">
@@ -64,7 +61,7 @@ function createCartItemElement(item, index) {
         <div class="cart-item-quantity">
             <div class="quantity-controls">
                 <button onclick="updateQuantity(${index}, -1)">-</button>
-                <input type="number" value="${item.quantity}" min="1" onchange="updateQuantityInput(${index}, this.value)">
+                <input type="number" value="${item.quantity}" min="1" onchange="updateQuantityInput(${index}, this.value)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                 <button onclick="updateQuantity(${index}, 1)">+</button>
             </div>
         </div>

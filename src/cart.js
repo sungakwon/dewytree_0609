@@ -52,7 +52,7 @@ function renderCartItems() {
             <div class="cart-item-quantity">
                 <div class="quantity-controls">
                     <button onclick="updateQuantity(${index}, -1)">-</button>
-                    <input type="text" value="${item.quantity}" readonly>
+                    <input type="number" value="${item.quantity}" min="1" onchange="updateQuantityInput(${index}, this.value)">
                     <button onclick="updateQuantity(${index}, 1)">+</button>
                 </div>
             </div>
@@ -62,7 +62,7 @@ function renderCartItems() {
     });
 
     // 금액 업데이트
-    const shipping = subtotal >= 19800 ? 0 : 3000;
+    const shipping = subtotal >= 30000 ? 0 : 3000;
     document.getElementById('subtotal').textContent = subtotal.toLocaleString() + '원';
     document.getElementById('shipping').textContent = shipping.toLocaleString() + '원';
     document.getElementById('total').textContent = (subtotal + shipping).toLocaleString() + '원';
