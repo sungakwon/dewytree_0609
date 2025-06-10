@@ -1,4 +1,13 @@
-const CART_KEY = 'cartItemsB';
+// Supabase 클라이언트 초기화
+const supabaseUrl = 'YOUR_SUPABASE_URL';
+const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// 사용자 식별자 (로그인된 사용자 정보가 있다면 사용)
+const userId = 'anonymous_user';
+
+// 장바구니 테이블 이름
+const CART_TABLE = 'cart_items';
 
 // 메인 페이지로 이동하는 함수 - 항상 index2.html로 이동
 function goToHome() {
@@ -6,11 +15,16 @@ function goToHome() {
 }
 
 // 장바구니에 상품 제거
-function removeItem(index) {
+async function removeItem(productId) {
     try {
-        const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-        cartItems.splice(index, 1);
-        localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+        const { error } = await supabase
+            .from(CART_TABLE)
+            .delete()
+            .eq('product_id', productId)
+            .eq('user_id', userId);
+
+        if (error) throw error;
+        
         loadCartItems();
     } catch (error) {
         console.error('상품 제거 중 오류 발생:', error);

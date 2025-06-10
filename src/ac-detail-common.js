@@ -9,6 +9,17 @@ let selectedPrice = productDetail ? productDetail.price : 0; // productDetail이
 let quantityInput;
 let totalPriceAmount;
 
+// Supabase 클라이언트 초기화
+const supabaseUrl = 'YOUR_SUPABASE_URL';
+const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// 사용자 식별자 (로그인된 사용자 정보가 있다면 사용)
+const userId = 'anonymous_user';
+
+// 장바구니 테이블 이름
+const CART_TABLE = 'cart_items';
+
 // GA4 상품 조회 이벤트
 gtag('event', 'view_item', {
     currency: 'KRW',
@@ -361,49 +372,43 @@ if (quantityInput) {
 
     // 바로 구매하기 버튼 클릭 이벤트
     if (buyNowButton) {
-        buyNowButton.addEventListener('click', function() {
+        buyNowButton.addEventListener('click', async function() {
             const quantity = parseInt(quantityInput.value);
             
-            // 장바구니에 아이템 추가
-const cartKey = getCurrentCartKey();
-let cartItems = JSON.parse(localStorage.getItem(cartKey)) || [];
+            try {
+                const { data, error } = await supabase
+                    .from('cart_items')
+                    .upsert({
+                        user_id: userId,
+                        product_id: productDetail.id,
+                        name: productDetail.name,
+                        price: productDetail.price,
+                        quantity: 1,
+                        image: productDetail.image
+                    })
+                    .select();
 
-// 이미 있는 아이템인지 확인
-const existingItemIndex = cartItems.findIndex(item => item.id === productDetail.id);
+                if (error) throw error;
 
-if (existingItemIndex > -1) {
-    // 이미 있는 아이템이면 수량만 업데이트
-    cartItems[existingItemIndex].quantity = 1;  // 수량을 항상 1로 설정
-} else {
-    // 새로운 아이템이면 추가
-    cartItems.push({
-        id: productDetail.id,
-        name: productDetail.name,
-        price: productDetail.price,
-        quantity: 1,  // 수량을 항상 1로 설정
-        image: productDetail.image
-    });
-}
-           
-            
-            // 장바구니 업데이트
-            localStorage.setItem(cartKey, JSON.stringify(cartItems));
-            
-            // GA4 이벤트 추적
-            gtag('event', 'buy_now', {
-                currency: 'KRW',
-                value: productDetail.price * quantity,
-                items: [{
-                    item_id: productDetail.id,
-                    item_name: productDetail.name,
-                    price: productDetail.price,
-                    quantity: quantity,
-                    currency: 'KRW'
-                }]
-            });
-            
-            // 장바구니 페이지로 이동
-            window.location.href = getCurrentCartPage();
+                // GA4 이벤트 추적
+                gtag('event', 'buy_now', {
+                    currency: 'KRW',
+                    value: productDetail.price * quantity,
+                    items: [{
+                        item_id: productDetail.id,
+                        item_name: productDetail.name,
+                        price: productDetail.price,
+                        quantity: quantity,
+                        currency: 'KRW'
+                    }]
+                });
+                
+                // 장바구니 페이지로 이동
+                window.location.href = getCurrentCartPage();
+            } catch (error) {
+                console.error('바로 구매 중 오류 발생:', error);
+                alert('바로 구매 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
         });
     }
 
