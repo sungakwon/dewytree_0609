@@ -23,7 +23,11 @@ function updateQuantity(index, change) {
     try {
         const cartItems = JSON.parse(localStorage.getItem(CART_KEY)) || [];
         if (cartItems[index]) {
-            cartItems[index].quantity = Math.max(1, cartItems[index].quantity + change);
+            cartItems[index].quantity = cartItems[index].quantity + change;
+            // 최소 수량 1 보장
+            if (cartItems[index].quantity < 1) {
+                cartItems[index].quantity = 1;
+            }
             localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
             renderCartItems();
         }
@@ -151,10 +155,16 @@ function renderCartItems() {
     });
 
     // 금액 업데이트
-    const shipping = subtotal >= 30000 ? 0 : 3000;
-    document.getElementById('subtotal').textContent = subtotal.toLocaleString() + '원';
-    document.getElementById('shipping').textContent = shipping.toLocaleString() + '원';
-    document.getElementById('total').textContent = (subtotal + shipping).toLocaleString() + '원';
+    const subtotalElement = document.getElementById('subtotal');
+    const shippingElement = document.getElementById('shipping');
+    const totalElement = document.getElementById('total');
+
+    if (subtotalElement && shippingElement && totalElement) {
+        const shipping = subtotal >= 30000 ? 0 : 3000;
+        subtotalElement.textContent = subtotal.toLocaleString() + '원';
+        shippingElement.textContent = shipping.toLocaleString() + '원';
+        totalElement.textContent = (subtotal + shipping).toLocaleString() + '원';
+    }
 
     // 수량 조절 버튼 이벤트 리스너 추가
     const minusBtns = document.querySelectorAll('.quantity-btn.minus');
@@ -205,7 +215,7 @@ function renderCartItems() {
 
     if (continueShoppingBtn) {
         continueShoppingBtn.addEventListener('click', () => {
-            goToHome();
+            window.location.href = 'index1.html';
         });
     }
     if (checkoutBtn) {
