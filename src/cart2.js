@@ -68,6 +68,33 @@ function checkout() {
 // 페이지 로드 이벤트 리스너 추가
 window.addEventListener('DOMContentLoaded', () => {
     loadCartItems();
+    
+    // 로고 클릭 이벤트 처리
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', goToHome);
+    }
+
+    // 장바구니 비어있을 때의 쇼핑 계속하기 버튼
+    const emptyContinueBtn = document.querySelector('.cart-empty .continue-shopping-btn');
+    if (emptyContinueBtn) {
+        emptyContinueBtn.addEventListener('click', goToHome);
+    }
+
+    // 장바구니 요약 영역의 버튼들
+    const summaryContinueBtn = document.querySelector('.cart-summary .continue-shopping-btn');
+    const checkoutBtn = document.querySelector('.checkout-btn');
+
+    if (summaryContinueBtn) {
+        summaryContinueBtn.addEventListener('click', goToHome);
+    }
+
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            checkout();
+            trackGA4Event('begin_checkout', {currency: 'KRW', value: parseFloat(document.getElementById('total').innerText.replace('원', '').replace(',', ''))});
+        });
+    }
 });
 
 

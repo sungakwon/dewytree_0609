@@ -198,4 +198,10 @@ function addToCart(item) {
 // 페이지 로드 이벤트 리스너 추가
 window.addEventListener('DOMContentLoaded', () => {
     renderCartItems();
+    
+    // 로고 클릭 이벤트 처리
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', goToHome);
+    }
 }); 
