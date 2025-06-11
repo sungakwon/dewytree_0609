@@ -32,6 +32,7 @@ function updateQuantity(change) {
     const pricePerItem = selectedPrice;
 
     quantity = Math.max(1, quantity + change);
+
     quantityInput.value = quantity;
     
     const totalPrice = (quantity * pricePerItem).toLocaleString() + '원';
@@ -42,15 +43,70 @@ function updateQuantity(change) {
 updateQuantity(0);
 
 // 장바구니 담기 버튼 클릭 이벤트
-document.querySelector('.add-to-cart-button').addEventListener('click', function() {
+addToCartButton.addEventListener('click', async function () {
     const quantity = parseInt(quantityInput.value);
-    const item = {
-        name: window.productDetail.name,
-        price: selectedPrice,
-        quantity: quantity,
-        image: window.productDetail.image,
-        id: window.productDetail.id  // 상품 ID 추가
-    };
+    const version = getCurrentVersionFromUrlOrSession(); // '1' 또는 '2'
+
+    try {
+        // 1. carts 테이블에서 해당 세션 ID로 카트가 있는지 확인
+        const sessionId = userId || sessionStorage.getItem('sessionId') || crypto.randomUUID();
+        sessionStorage.setItem('sessionId', sessionId);
+
+        let { data: existingCart, error: findCartError } = await supabase
+            .from('carts')
+            .select('id')
+            .eq('session_id', sessionId)
+            .single();
+
+        // 2. 없으면 새로 생성
+        if (findCartError || !existingCart) {
+            const { data: newCart, error: createCartError } = await supabase
+                .from('carts')
+                .insert({ session_id: sessionId })
+                .select()
+                .single();
+
+            if (createCartError) throw createCartError;
+            existingCart = newCart;
+        }
+
+        // 3. cart_items에 상품 추가
+        const { error: insertError } = await supabase
+            .from('cart_items')
+            .insert({
+                cart_id: existingCart.id,
+                product_id: productDetail.id,
+                product_name: productDetail.name,
+                line: productDetail.line || 'amino', // 'ac' 또는 'amino'
+                quantity: quantity,
+                unit_price: productDetail.price,
+                added_at: new Date().toISOString()
+            });
+
+        if (insertError) throw insertError;
+
+        // 4. GA 이벤트
+        gtag('event', 'add_to_cart', {
+            currency: 'KRW',
+            value: productDetail.price * quantity,
+            items: [{
+                item_id: productDetail.id,
+                item_name: productDetail.name,
+                price: productDetail.price,
+                quantity: quantity,
+                currency: 'KRW'
+            }]
+        });
+
+        // 5. 장바구니 페이지로 이동
+        window.location.href = getCurrentCartPage();
+
+    } catch (err) {
+        console.error('장바구니 저장 오류:', err);
+        alert('장바구니에 상품을 담는 중 문제가 발생했습니다.');
+    }
+});
+
 
     // GA4 이벤트 트래킹
     gtag('event', 'add_to_cart', {
@@ -77,7 +133,7 @@ document.querySelector('.add-to-cart-button').addEventListener('click', function
     
     localStorage.setItem(getCurrentCartKey(), JSON.stringify(cartItems));
     showPopup();
-});
+
 
 // 바로 구매하기 버튼 클릭 이벤트
 document.querySelector('.buy-now-button').addEventListener('click', function() {

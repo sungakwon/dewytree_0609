@@ -19,10 +19,10 @@
         }
     </script>
     <link rel="stylesheet" href="/src/index1.css">
-    <script src="/src/index1.js"></script>
+    <script type="module" src="/src/index1.js"></script>
     <script>
         // 페이지 로드 시 버전 설정
-        window.addEventListener('load', function() {
+        window.addEventListener('load', () => {
             sessionStorage.setItem('currentVersion', 'a');
         });
 

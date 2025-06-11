@@ -1,3 +1,5 @@
+import { version } from "vite";
+
 // Google Analytics 설정
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -13,7 +15,7 @@ function navigateToProduct(url, productInfo) {
             item_name: productInfo.name,
             price: productInfo.price,
             currency: 'KRW'
-        }]
+        }],
     });
     window.location.href = url;
 }

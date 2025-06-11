@@ -23,25 +23,14 @@
 <body>
     <header class="header">
         <div class="header-left">
-            <div class="logo" onclick="location.href='index1.html'" style="cursor: pointer;">DEWYTREE</div>
+            <div class="logo" id="mainLogo" style="cursor: pointer;">DEWYTREE</div>
             <nav class="nav-menu">
-                <a href="brand.html">BRAND</a>
-                <div class="dropdown">
-                    <a href="product.html">PRODUCT</a>
-                    <div class="dropdown-content">
-                        <div class="menu-column">
-                            <div class="menu-title">BY LINE</div>
-                            <ul class="submenu">
-                                <li><a href="amino-product.html#version-a" onclick="saveVersion('A'); return true;">AC라인</a></li>
-                                <li><a href="amino-product.html#version-b" onclick="saveVersion('B'); return true;">AMINO라인</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <a href="best.html">BEST</a>
+                <a href="#" id="brandTab">BRAND</a>
+                <a href="#" id="productTab">PRODUCT</a>
+                <a href="#" id="bestTab">BEST</a>
             </nav>
         </div>
-        <div class="cart-icon" onclick="location.href='cart.html'">🛒</div>
+        <div class="cart-icon" onclick="location.href='cart2.html'">🛒</div>
     </header>
 
     <main class="main-content">
@@ -109,5 +98,28 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('brandTab').addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.setItem('currentVersion', 'a');
+            window.location.href = 'brand.html';
+        });
+        document.getElementById('productTab').addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.setItem('currentVersion', 'a');
+            window.location.href = 'product.html';
+        });
+        document.getElementById('bestTab').addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.setItem('currentVersion', 'a');
+            window.location.href = 'best.html';
+        });
+        document.getElementById('mainLogo').addEventListener('click', function() {
+            window.location.href = 'index1.html';
+        });
+    });
+    </script>
 </body>
 </html> 

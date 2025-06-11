@@ -24,32 +24,33 @@
 <body>
     <header class="header">
         <div class="header-left">
-            <div class="logo" onclick="goToMainPage()">DEWYTREE</div>
+            <div class="logo">DEWYTREE</div>
             <nav class="nav-menu">
-                <a href="javascript:void(0)" onclick="goToBrandPage()">BRAND</a>
+                <a href="brand.html">BRAND</a>
                 <div class="dropdown">
-                    <a href="javascript:void(0)" onclick="goToProductListPage()">PRODUCT</a>
+                    <a href="product.html">PRODUCT</a>
                     <div class="dropdown-content">
                         <div class="menu-column">
                             <div class="menu-title">BY LINE</div>
                             <ul class="submenu">
-                                <li><a href="ac-product.html#version-a" onclick="sessionStorage.setItem('currentVersion', 'a');">AC라인</a></li>
-                                <li><a href="amino-product.html#version-b" onclick="sessionStorage.setItem('currentVersion', 'b');">AMINO라인</a></li>
+                                <li><a href="ac-product.html#version-a">AC라인</a></li>
+                                <li><a href="amino-product.html#version-b">AMINO라인</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <a href="javascript:void(0)" onclick="goToBestPage()">BEST</a>
+                <a href="best.html">BEST</a>
             </nav>
         </div>
-        <div class="cart-icon" onclick="goToCart()">🛒</div>
+        <div class="cart-icon">🛒</div>
     </header>
 
     <main>
         <div id="version-a-content">
             <h1 class="page-title">AC 흔적 진정 라인</h1>
             <div class="product-grid">
-                <a href="javascript:void(0)" onclick="navigateToProduct('ac-mask-detail.html')" style="text-decoration: none; color: inherit;">
+                <!-- <a href="ac-mask-detail.html" style="text-decoration: none; color: inherit;"> -->
+                <a href="ac-mask-detail.html" style="text-decoration: none; color: inherit;">
                     <div class="product-card">
                         <div class="sale-badge">SALE</div>
                         <div class="product-image">
@@ -61,7 +62,7 @@
                     </div>
                 </a>
 
-                <a href="javascript:void(0)" onclick="navigateToProduct('ac-cream-detail.html')" style="text-decoration: none; color: inherit;">
+                <a href="ac-cream-detail.html" style="text-decoration: none; color: inherit;">
                     <div class="product-card">
                         <div class="sale-badge">SALE</div>
                         <div class="product-image">
@@ -73,7 +74,7 @@
                     </div>
                 </a>
 
-                <a href="javascript:void(0)" onclick="navigateToProduct('ac-ampoule-detail.html')" style="text-decoration: none; color: inherit;">
+                <a href="ac-ampoule-detail.html" style="text-decoration: none; color: inherit;">
                     <div class="product-card">
                         <div class="sale-badge">SALE</div>
                         <div class="product-image">
@@ -90,7 +91,7 @@
         <div id="version-b-content" style="display: none;">
             <h1 class="page-title">AMINO 라인</h1>
             <div class="product-grid">
-                <a href="javascript:void(0)" onclick="navigateToProduct('amino-powder-detail.html')" style="text-decoration: none; color: inherit;">
+                <a href="amino-powder-detail.html" style="text-decoration: none; color: inherit;">
                     <div class="product-card">
                         <div class="sale-badge">SALE</div>
                         <div class="product-image">
@@ -102,7 +103,7 @@
                     </div>
                 </a>
 
-                <a href="javascript:void(0)" onclick="navigateToProduct('cleansing-balm-detail.html')" style="text-decoration: none; color: inherit;">
+                <a href="cleansing-balm-detail.html" style="text-decoration: none; color: inherit;">
                     <div class="product-card">
                         <div class="sale-badge">SALE</div>
                         <div class="product-image">
@@ -114,7 +115,7 @@
                     </div>
                 </a>
 
-                <a href="javascript:void(0)" onclick="navigateToProduct('cleansing-milk-detail.html')" style="text-decoration: none; color: inherit;">
+                <a href="cleansing-milk-detail.html" style="text-decoration: none; color: inherit;">
                     <div class="product-card">
                         <div class="sale-badge">SALE</div>
                         <div class="product-image">
@@ -145,11 +146,13 @@
                 <p>이메일: cs@dewytree.com | 전화: 02-1234-5678</p>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 DEWYTREE. All Rights Reserved.</p>
+                <p> 2024 DEWYTREE. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script type="module" src="/src/product.js"></script>
+    <script type="module" src="/src/supabase-client.js"></script>
+    <script src="/src/ac-detail-common.js"></script>
 </body>
-</html> 
+</html>
