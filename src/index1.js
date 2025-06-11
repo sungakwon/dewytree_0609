@@ -13,7 +13,7 @@ function navigateToProduct(url, productInfo) {
             item_name: productInfo.name,
             price: productInfo.price,
             currency: 'KRW'
-        }]
+        }],
     });
     window.location.href = url;
 }

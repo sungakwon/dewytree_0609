@@ -1,21 +1,32 @@
-// Supabase 클라이언트 초기화
-const supabaseUrl = 'https://aalofvjwhobuajxegozo.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhbG9mdmp3aG9idWFqeGVnb3pvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1MzE1MjEsImV4cCI6MjA2NTEwNzUyMX0.fRUXnpnt092R31S1KCaXxrDuJIlAqGoINkv5QjqZ3Uw';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+import { supabase, CART_TABLE, getUserId } from './supabase-client.js';
 
-// 사용자 식별자 (로그인된 사용자 정보가 있다면 사용)
-const userId = 'anonymous_user';
+// 세션 ID 관리
+const sessionId = getUserId() || sessionStorage.getItem('sessionId') || crypto.randomUUID();
+if (!sessionStorage.getItem('sessionId')) {
+    sessionStorage.setItem('sessionId', sessionId);
+}
 
-// 장바구니 테이블 이름
-const CART_TABLE = 'cart_items';
+// cart 데이터를 저장할 전역 변수
+let cartData;
 
 // 장바구니 데이터 불러오기
 async function loadCartItems() {
     try {
+        // 먼저 cart 테이블에서 해당 세션의 cart_id를 가져옴
+        const { data: cartData, error: cartError } = await supabase
+            .from('carts')
+            .select('id')
+            .eq('session_id', sessionId)
+            .single();
+
+        if (cartError) throw cartError;
+        window.cartData = cartData; // 전역 변수에 저장
+
+        // cart_items에서 해당 cart_id의 아이템들을 가져옴
         const { data, error } = await supabase
             .from(CART_TABLE)
             .select('*')
-            .eq('cart_id', userId); // cart_id로 변경
+            .eq('cart_id', cartData.id);
 
         if (error) throw error;
         
@@ -26,7 +37,7 @@ async function loadCartItems() {
             price: item.unit_price,
             quantity: item.quantity,
             image: item.image_url || '', // image_url이 없을 경우 빈 문자열 반환
-            total_price: item.total_price
+            total_price: item.unit_price * item.quantity
         }));
     } catch (error) {
         console.error('장바구니 데이터 불러오기 오류:', error);
@@ -40,13 +51,13 @@ async function saveCartItem(item) {
         const { error } = await supabase
             .from(CART_TABLE)
             .upsert({
-                cart_id: userId, // cart_id로 변경
+                cart_id: cartData.id,
                 product_id: item.id,
-                product_name: item.name, // product_name으로 변경
-                unit_price: item.price, // unit_price로 변경
+                product_name: item.name,
+                unit_price: item.price,
                 quantity: item.quantity,
-                total_price: item.price * item.quantity, // total_price 추가
-                added_at: new Date().toISOString() // added_at 추가
+                total_price: item.price * item.quantity,
+                added_at: new Date().toISOString()
             })
             .select();
 
@@ -59,26 +70,22 @@ async function saveCartItem(item) {
     }
 }
 
-// 메인 페이지로 이동하는 함수 - 항상 index1.html로 이동
-function goToHome() {
-    window.location.href = 'index1.html';
-}
-
+// 장바구니에서 상품 제거
 // 장바구니에 상품 제거
 async function removeItem(productId) {
     try {
         const { error } = await supabase
             .from(CART_TABLE)
             .delete()
-            .eq('product_id', productId)
-            .eq('cart_id', userId); // user_id를 cart_id로 변경
+            .eq('id', productId)
+            .eq('cart_id', window.cartData.id);
 
         if (error) throw error;
         
-        renderCartItems();
+        return true;
     } catch (error) {
         console.error('상품 제거 중 오류 발생:', error);
-        alert('상품 제거 중 오류가 발생했습니다. 다시 시도해주세요.');
+        return false;
     }
 }
 
@@ -220,6 +227,27 @@ async function renderCartItems() {
                 });
             }
 
+<<<<<<< HEAD
+            if (removeBtn) {
+                removeBtn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    await removeItem(item.product_id);
+=======
+            // X 표시 클릭 이벤트 처리
+            if (removeBtn) {
+                removeBtn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    await removeItem(item.id);
+>>>>>>> 8d940e3eaf549cf62ccea38fb67cb9f97a457143
+                    renderCartItems();
+                });
+            }
+
+<<<<<<< HEAD
+            cartItemsContainer.appendChild(itemElement);
+        });
+
+=======
             if (removeBtn) {
                 removeBtn.addEventListener('click', async (e) => {
                     e.stopPropagation();
@@ -231,6 +259,7 @@ async function renderCartItems() {
             cartItemsContainer.appendChild(itemElement);
         });
 
+>>>>>>> 8d940e3eaf549cf62ccea38fb67cb9f97a457143
         // 배송비 계산 (3만원 이상 무료배송)
         const shipping = subtotal >= 30000 ? 0 : 3000;
 

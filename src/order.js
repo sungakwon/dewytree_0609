@@ -55,7 +55,7 @@ function renderOrderItems() {
         const itemElement = document.createElement('div');
         itemElement.className = 'order-item';
         itemElement.innerHTML = `
-            <img src="${item.image.startsWith('/') ? item.image.slice(1) : item.image}" alt="${item.name}" class="item-image">
+            <img src="/images/${item.image.replace(/^\/+/, '')}" alt="${item.name}" class="item-image">
             <div class="item-info">
                 <div class="item-name">${item.name}</div>
                 <div class="item-price">${item.price.toLocaleString()}원 × ${item.quantity}개</div>
@@ -107,13 +107,14 @@ function showPaymentComplete() {
         const itemElement = document.createElement('div');
         itemElement.className = 'payment-item';
         itemElement.innerHTML = `
-            <img src="${item.image.startsWith('/') ? item.image.slice(1) : item.image}" alt="${item.name}">
+            <img src="/images/${item.image.replace(/^\/+/, '')}" alt="${item.name}">
             <div class="payment-item-info">
                 <div class="payment-item-name">${item.name}</div>
                 <div class="payment-item-quantity">수량: ${item.quantity}개</div>
                 <div class="payment-item-price">${(item.price * item.quantity).toLocaleString()}원</div>
             </div>
         `;
+        
         paymentItemsList.appendChild(itemElement);
     });
 

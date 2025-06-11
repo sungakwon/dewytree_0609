@@ -29,7 +29,18 @@ export default defineConfig({
         'amino-powder-detail': './amino-powder-detail.html',
         'cleansing-balm-detail': './cleansing-balm-detail.html',
         'cleansing-milk-detail': './cleansing-milk-detail.html'
-      }
+      },
+      external: ['fsevents']
+    }
+  },
+  server: {
+    port: 3000,
+    open: true,
+    cors: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     }
   },
   server: {

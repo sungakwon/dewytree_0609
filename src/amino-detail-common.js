@@ -32,6 +32,7 @@ function updateQuantity(change) {
     const pricePerItem = selectedPrice;
 
     quantity = Math.max(1, quantity + change);
+
     quantityInput.value = quantity;
     
     const totalPrice = (quantity * pricePerItem).toLocaleString() + '원';

@@ -179,12 +179,21 @@ function goToMainPage() {
 
 
     // 수량 입력 필드 이벤트 리스너
+<<<<<<< HEAD
 
         // 초기 수량 설정
         quantityInput.value = '1';
         quantityInput.addEventListener('change', handleQuantityInput);
     
 
+=======
+
+        // 초기 수량 설정
+        quantityInput.value = '1';
+        quantityInput.addEventListener('change', handleQuantityInput);
+    
+
+>>>>>>> 8d940e3eaf549cf62ccea38fb67cb9f97a457143
     // 수량 감소 버튼 이벤트 리스너
  
         decreaseButton.addEventListener('click', decreaseQuantity);
@@ -243,6 +252,7 @@ function goToMainPage() {
             if (insertError) throw insertError;
     
             // 4. GA 이벤트
+<<<<<<< HEAD
             gtag('event', 'add_to_cart', {
                 currency: 'KRW',
                 value: productDetail.price * quantity,
@@ -257,6 +267,24 @@ function goToMainPage() {
     
             // 5. 장바구니 페이지로 이동
             window.location.href = getCurrentCartPage();
+=======
+            if (typeof gtag === 'function') {
+                gtag('event', 'add_to_cart', {
+                    currency: 'KRW',
+                    value: productDetail.price * quantity,
+                    items: [{
+                        item_id: productDetail.id,
+                        item_name: productDetail.name,
+                        price: productDetail.price,
+                        quantity: quantity,
+                        currency: 'KRW'
+                    }]
+                });
+            }
+            
+            // 5. 장바구니 추가 성공 후 팝업 표시
+            showPopup();
+>>>>>>> 8d940e3eaf549cf62ccea38fb67cb9f97a457143
     
         } catch (err) {
             console.error('장바구니 저장 오류:', err);
@@ -265,6 +293,91 @@ function goToMainPage() {
     });
     
     
+<<<<<<< HEAD
+=======
+
+    // 바로 구매하기 버튼 클릭 이벤트
+    if (buyNowButton) {
+        buyNowButton.addEventListener('click', async function() {
+            const quantity = parseInt(quantityInput.value) || 1;
+            
+            try {
+                // 1. carts 테이블에서 해당 세션 ID로 카트가 있는지 확인
+                const sessionId = userId || sessionStorage.getItem('sessionId') || crypto.randomUUID();
+                sessionStorage.setItem('sessionId', sessionId);
+
+                let { data: existingCart, error: findCartError } = await supabase
+                    .from('carts')
+                    .select('id')
+                    .eq('session_id', sessionId)
+                    .single();
+
+                // 2. 없으면 새로 생성
+                if (findCartError || !existingCart) {
+                    const { data: newCart, error: createCartError } = await supabase
+                        .from('carts')
+                        .insert({ session_id: sessionId })
+                        .select()
+                        .single();
+
+                    if (createCartError) throw createCartError;
+                    existingCart = newCart;
+                }
+
+                // 3. cart_items에 상품 추가
+                const { error: insertError } = await supabase
+                    .from('cart_items')
+                    .insert({
+                        cart_id: existingCart.id,
+                        product_id: productDetail.id,
+                        product_name: productDetail.name,
+                        line: productDetail.line || 'amino',
+                        quantity: quantity,
+                        unit_price: productDetail.price,
+                        added_at: new Date().toISOString()
+                    });
+
+                if (insertError) throw insertError;
+
+                // 4. GA 이벤트
+                if (typeof gtag === 'function') {
+                    gtag('event', 'buy_now', {
+                        currency: 'KRW',
+                        value: productDetail.price * quantity,
+                        items: [{
+                            item_id: productDetail.id,
+                            item_name: productDetail.name,
+                            price: productDetail.price,
+                            quantity: quantity,
+                            currency: 'KRW'
+                        }]
+                    });
+                }
+
+                // 5. 주문 페이지로 이동
+                window.location.href = 'order.html';
+
+            } catch (error) {
+                console.error('바로 구매 중 오류 발생:', error);
+            }
+        });
+    }
+    
+
+    // 장바구니 팝업 버튼 이벤트 리스너
+
+        continueShoppingButton.addEventListener('click', closePopup);
+    
+
+   
+        goToCartButton.addEventListener('click', goToCart);
+    
+
+    // 장바구니 아이콘 클릭 이벤트
+  
+        cartIcon.addEventListener('click', goToCart);
+    
+>>>>>>> 8d940e3eaf549cf62ccea38fb67cb9f97a457143
 
     // 바로 구매하기 버튼 클릭 이벤트
  
@@ -283,6 +396,7 @@ function goToMainPage() {
                         image: productDetail.image,
                         total_price: productDetail.price * quantity,
                         added_at: new Date().toISOString()
+<<<<<<< HEAD
                     })
                     .select();
 
@@ -341,6 +455,8 @@ function goToMainPage() {
                         image: productDetail.image,
                         total_price: productDetail.price * quantity,
                         added_at: new Date().toISOString()
+=======
+>>>>>>> 8d940e3eaf549cf62ccea38fb67cb9f97a457143
                     })
                     .select();
 
@@ -364,7 +480,6 @@ function goToMainPage() {
                 return;
             } catch (error) {
                 console.error('바로 구매 중 오류 발생:', error);
-                alert('바로 구매 중 오류가 발생했습니다. 다시 시도해주세요.');
             }
         });
     
