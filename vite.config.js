@@ -29,7 +29,8 @@ export default defineConfig({
         'amino-powder-detail': './amino-powder-detail.html',
         'cleansing-balm-detail': './cleansing-balm-detail.html',
         'cleansing-milk-detail': './cleansing-milk-detail.html'
-      }
+      },
+      external: ['fsevents']
     }
   },
   server: {

@@ -1,5 +1,3 @@
-import { version } from "vite";
-
 // Google Analytics 설정
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
