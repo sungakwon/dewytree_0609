@@ -3,7 +3,10 @@ import path from 'path';
 
 export default defineConfig({
   root: '.',
+  base: '/',
   build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
     rollupOptions: {
       input: {
         main: './index.html',
@@ -27,6 +30,16 @@ export default defineConfig({
         'cleansing-balm-detail': './cleansing-balm-detail.html',
         'cleansing-milk-detail': './cleansing-milk-detail.html'
       }
+    }
+  },
+  server: {
+    port: 3000,
+    open: true,
+    cors: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     }
   }
 });
